@@ -22,6 +22,7 @@ const propertySchema = mongoose.Schema(
     landlordEmailAddress: { type: String, required: true },
     landlordPhoneNumber: { type: String, required: true },
     landlordKraPin: { type: String, required: true },
+    propertyStatus: { type: String, default: "visible" },
   },
   { timestamps: true }
 );

@@ -16,6 +16,7 @@ const createProperty = async (req, res, next) => {
     landlordEmailAddress,
     landlordPhoneNumber,
     landlordKraPin,
+    propertyStatus,
   } = req.body;
 
   if (
@@ -43,6 +44,7 @@ const createProperty = async (req, res, next) => {
       landlordEmailAddress,
       landlordPhoneNumber,
       landlordKraPin,
+      propertyStatus,
       user: req.user.name,
       userId: req.user.id,
     });
@@ -58,7 +60,10 @@ const createProperty = async (req, res, next) => {
 // private
 const getMyProperties = async (req, res) => {
   try {
-    const property = await Property.find({ userId: req.user.id }).sort({
+    const property = await Property.find({
+      userId: req.user.id,
+      propertyStatus: "visible",
+    }).sort({
       $natural: -1,
     });
     res.status(200).json(property);
@@ -113,19 +118,19 @@ const updateProperty = async (req, res, next) => {
     return;
   }
 
-  const user = await User.findById(req.user.id); //find the logged in user from db
+  // const user = await User.findById(req.user.id); //find the logged in user from db
 
-  // check for user
-  if (!user) {
-    res.status(401).send("user not found");
-    return;
-  }
+  // // check for user
+  // if (!user) {
+  //   res.status(401).send("user not found");
+  //   return;
+  // }
 
-  // compare the user who created the goal with the logged in user
-  if (property.user.toString() !== user.name) {
-    res.status(401).send("Not Authorized");
-    return;
-  }
+  // // compare the user who created the goal with the logged in user
+  // if (property.user.toString() !== user.name) {
+  //   res.status(401).send("Not Authorized");
+  //   return;
+  // }
 
   try {
     const updatedProperty = await Property.findByIdAndUpdate(

@@ -11,7 +11,7 @@ const router = express.Router();
 // base_url => /api/v1/property
 router.post("/", protect, createProperty); //create property;
 router.get("/", protect, getMyProperties); // fetch my properties;
-router.put("/:id", protect, updateProperty); // update my property;
+router.put("/:id", updateProperty); // update my property;
 router.delete("/:id", protect, deleteProperty); // delete my property
 
 module.exports = router;
