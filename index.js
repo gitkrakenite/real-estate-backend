@@ -9,12 +9,14 @@ const PORT = process.env.PORT || 8000;
 const connectDB = require("./config/db");
 const propertyRouter = require("./routes/propertyRoute");
 const userRouter = require("./routes/userRoute");
+const { corsOptions, credentials } = require("./middleware/corsConfig");
 
-// middleware
 const app = express();
+
+// Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors());
 
 // DB connect
 connectDB();
