@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8000;
 
 // local imports
 const connectDB = require("./config/db");
+const propertyRouter = require("./routes/propertyRoute");
 
 // middleware
 const app = express();
@@ -19,6 +20,8 @@ connectDB();
 
 // routes
 app.get("/", (req, res) => res.send("AP1 working"));
+
+app.use("/api/v1/property", propertyRouter);
 
 // listener
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
