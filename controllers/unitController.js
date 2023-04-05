@@ -50,14 +50,14 @@ const createUnit = async (req, res, next) => {
   }
 };
 
-// @fetch  GET
-// http://localhost:5000/api/v1/unit
+// @fetch  POST
+// http://localhost:5000/api/v1/unit/fetchunits
 // private
 const getMyUnits = async (req, res) => {
+  // console.log(req.body);
   const { assignedPropertyName } = req.body;
-
   if (!assignedPropertyName) {
-    res.send("No property name");
+    res.send("No property name backend");
     return;
   }
 
