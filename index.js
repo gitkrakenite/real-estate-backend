@@ -32,4 +32,4 @@ app.use("/api/v1/unit", unitRouter);
 app.use("/api/v1/tenant", tenantRouter);
 
 // listener
-app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port: ${PORT}`.red));
